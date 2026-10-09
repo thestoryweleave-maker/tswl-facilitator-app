@@ -39,9 +39,19 @@
 <div class="actions"><button class="outline" onclick="show('teenLegacy')">← Back to Teen Legacy</button><button class="primary" onclick="saveTeenMissions()">SAVE MY PROGRESS</button></div>
 </section>
 <section class="screen" id="teenLeaders">
-<div class="hero"><h1>Program Leaders</h1><p class="sub">Help teens become thoughtful keepers of community stories.</p></div>
-<div class="card"><h2>Leader Resources</h2><ul><li>Introduce the purpose of intergenerational storytelling.</li><li>Help teens prepare respectful interview questions.</li><li>Discuss permission, privacy, and cultural respect.</li><li>Provide time for reflection and sharing.</li><li>Celebrate each completed storytelling mission.</li></ul></div>
-<div class="card"><h2>Discussion Starter</h2><p>What can we learn from the people who came before us?</p></div>
+<div class="hero"><h1>Program Leaders</h1><p class="sub">Plan activities, support teen storytellers, and create a respectful bridge between generations.</p></div>
+<div class="card"><h2>Session Preparation Checklist</h2><p class="sub">Use this before each group or community session.</p>
+<label class="check"><input type="checkbox" class="leaderPrep" data-item="space"> I prepared a welcoming, accessible space.</label>
+<label class="check"><input type="checkbox" class="leaderPrep" data-item="purpose"> I explained the purpose of the storytelling activity.</label>
+<label class="check"><input type="checkbox" class="leaderPrep" data-item="permission"> I reviewed permission, privacy, and recording choices.</label>
+<label class="check"><input type="checkbox" class="leaderPrep" data-item="choice"> I reminded everyone they may pass on any question.</label>
+<label class="check"><input type="checkbox" class="leaderPrep" data-item="closing"> I planned time for reflection and a respectful closing.</label>
+<button class="primary" onclick="saveLeaderChecklist()">SAVE PREPARATION CHECKLIST</button>
+</div>
+<div class="card"><h2>Mission Progress Review</h2><p class="sub">This summary reflects progress saved in this browser on this device. It is not a shared roster or remote monitoring system.</p><div class="progress"><span id="leaderProgressBar"></span></div><b id="leaderProgressText">0 of 3 missions marked complete on this device</b><button class="outline" style="display:block;margin-top:14px" onclick="refreshLeaderProgress()">REFRESH PROGRESS</button></div>
+<div class="card"><h2>Facilitation Guide</h2><ul><li><b>Ground:</b> Welcome everyone and explain that participation is voluntary.</li><li><b>Guide:</b> Offer open-ended questions; let the storyteller decide what to share.</li><li><b>Witness:</b> Listen without interrupting, correcting, or rushing.</li><li><b>Affirm:</b> Thank people for sharing without judging their experiences.</li><li><b>Archive:</b> Never record, copy, or share a story without clear permission.</li></ul></div>
+<div class="card"><h2>Discussion Starters</h2><p>What can we learn from the people who came before us?</p><p>Which traditions or skills do you hope future generations will remember?</p><p>What helps a person feel safe and respected when sharing a memory?</p></div>
+<div class="card"><h2>Session Notes</h2><label for="leaderNotes">Planning notes (avoid including private details about participants)</label><textarea class="textarea" id="leaderNotes" placeholder="Activity plan, materials, follow-up ideas..."></textarea><button class="primary" onclick="saveLeaderNotes()">SAVE LEADER NOTES</button><p class="small muted">Checklist and notes are saved locally in this browser on this device.</p></div>
 <button class="outline" onclick="show('teenLegacy')">← Back to Teen Legacy</button>
 </section>
 </main><div class="toast" id="toast"></div><footer class="footer">The Story We Leave™ · The memory lives where the story is told™</footer>
@@ -119,4 +129,17 @@ function updateTeenMissionProgress(){
   localStorage.setItem(teenMissionKey,JSON.stringify(saved));
 }
 loadTeenMissions();
+
+const leaderChecklistKey='tswl_teen_leader_checklist_v1';
+const leaderNotesKey='tswl_teen_leader_notes_v1';
+function loadLeaderTools(){
+  let checked=[];try{checked=JSON.parse(localStorage.getItem(leaderChecklistKey)||'[]')}catch(e){checked=[]}
+  document.querySelectorAll('.leaderPrep').forEach(cb=>{cb.checked=checked.includes(cb.dataset.item)});
+  const notes=document.getElementById('leaderNotes');if(notes)notes.value=localStorage.getItem(leaderNotesKey)||'';
+  refreshLeaderProgress();
+}
+function saveLeaderChecklist(){const checked=[...document.querySelectorAll('.leaderPrep:checked')].map(cb=>cb.dataset.item);localStorage.setItem(leaderChecklistKey,JSON.stringify(checked));toast('Leader checklist saved on this device ✓')}
+function saveLeaderNotes(){localStorage.setItem(leaderNotesKey,document.getElementById('leaderNotes').value);toast('Leader notes saved on this device ✓')}
+function refreshLeaderProgress(){let saved={};try{saved=JSON.parse(localStorage.getItem(teenMissionKey)||'{}')||{}}catch(e){saved={}}const done=[0,1,2].filter(i=>saved[i]?.done).length;const bar=document.getElementById('leaderProgressBar'),text=document.getElementById('leaderProgressText');if(bar)bar.style.width=Math.round(done/3*100)+'%';if(text)text.textContent=done+' of 3 missions marked complete on this device'}
+loadLeaderTools();
 </script>
