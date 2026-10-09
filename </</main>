@@ -107,3 +107,79 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./sw.js");
 }
 </script>
+
+<section class="screen" id="teenLegacy">
+  <div class="hero">
+    <h1>Teen Legacy Across Generations</h1>
+    <p class="sub">The Story We Leave™ Teen Legacy Community Program</p>
+  </div>
+
+  <div class="grid">
+    <button class="tile" onclick="show('teenMissions')">
+      <div class="icon">🌺</div>
+      <b>Teen Legacy Keepers</b>
+      <p>Explore missions, interview elders, and preserve meaningful stories.</p>
+    </button>
+
+    <button class="tile" onclick="show('teenLeaders')">
+      <div class="icon">🤝</div>
+      <b>Program Leaders</b>
+      <p>Guide activities, support teens, and organize community storytelling.</p>
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>Our Mission</h2>
+    <p>Connect generations through storytelling, cultural traditions, shared experiences, and the wisdom of our elders.</p>
+  </div>
+
+  <div class="card">
+    <h2>Start Here</h2>
+    <p>Choose your path above. Together, we keep stories alive for the next generation.</p>
+  </div>
+
+  <button class="outline" onclick="show('home')">← Back to Home</button>
+</section>
+
+<section class="screen" id="teenMissions">
+  <div class="hero">
+    <h1>Teen Legacy Keepers</h1>
+    <p class="sub">Listen. Learn. Preserve. Share.</p>
+  </div>
+  <div class="card">
+    <h2>Your First Mission</h2>
+    <p>Ask an elder or family member to share a favorite childhood memory.</p>
+    <p><b>Try asking:</b> What is one memory from your childhood that still makes you smile?</p>
+  </div>
+  <div class="card">
+    <h2>Mission Checklist</h2>
+    <label class="check"><input type="checkbox"> I chose someone to interview.</label>
+    <label class="check"><input type="checkbox"> I asked permission to record or write their story.</label>
+    <label class="check"><input type="checkbox"> I listened without interrupting.</label>
+    <label class="check"><input type="checkbox"> I recorded the story with their permission.</label>
+  </div>
+  <button class="outline" onclick="show('teenLegacy')">← Back to Teen Legacy</button>
+</section>
+
+<section class="screen" id="teenLeaders">
+  <div class="hero">
+    <h1>Program Leaders</h1>
+    <p class="sub">Help teens become thoughtful keepers of community stories.</p>
+  </div>
+  <div class="card">
+    <h2>Leader Resources</h2>
+    <ul>
+      <li>Introduce the purpose of intergenerational storytelling.</li>
+      <li>Help teens prepare respectful interview questions.</li>
+      <li>Discuss permission, privacy, and cultural respect.</li>
+      <li>Provide time for reflection and sharing.</li>
+      <li>Celebrate each completed storytelling mission.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Discussion Starter</h2>
+    <p>What can we learn from the people who came before us?</p>
+  </div>
+  <button class="outline" onclick="show('teenLegacy')">← Back to Teen Legacy</button>
+</section>
+
