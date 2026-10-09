@@ -31,11 +31,14 @@
 </section>
 <section class="screen" id="teenMissions">
 <div class="hero"><h1>Teen Legacy Keepers</h1><p class="sub">Listen. Learn. Preserve. Share.</p></div>
-<div class="card"><h2>Your Mission Journey</h2><p class="sub">Complete a mission at your own pace. Always ask permission before writing, recording, or sharing someone’s story.</p><div class="progress"><span id="teenProgressBar"></span></div><b id="teenProgressText">0 of 3 missions complete</b></div>
+<div class="card"><h2>Your Mission Journey</h2><p class="sub">Complete a mission at your own pace. Always ask permission before writing, recording, or sharing someone’s story.</p><div class="progress"><span id="teenProgressBar"></span></div><b id="teenProgressText">0 of 6 missions complete</b></div>
 <div class="card teen-mission" data-mission="0"><span class="pill">MISSION 1</span><h2>Memory Keeper</h2><p>Invite an elder, family member, or trusted community member to share a favorite childhood memory.</p><div class="goldbox"><b>Try asking:</b><p>“What is one memory from your childhood that still makes you smile?”</p><p>“Who was there with you?”</p><p>“What would you like younger generations to understand about that time?”</p></div><label>What stood out to you? (Do not include private details without permission.)</label><textarea class="textarea teen-note" id="teenNote0" placeholder="Write a reflection or a few things you learned..."></textarea><label class="check"><input type="checkbox" class="teen-check" id="teenCheck0"> I completed this mission and respected the storyteller’s wishes.</label></div>
 <div class="card teen-mission" data-mission="1"><span class="pill">MISSION 2</span><h2>Tradition Detective</h2><p>Learn about a family or community tradition, celebration, craft, song, recipe, or way of helping others.</p><div class="goldbox"><b>Try asking:</b><p>“How did this tradition begin?”</p><p>“Who taught you?”</p><p>“How has it changed over time?”</p></div><label>What did you learn about this tradition?</label><textarea class="textarea teen-note" id="teenNote1" placeholder="Record your reflection..."></textarea><label class="check"><input type="checkbox" class="teen-check" id="teenCheck1"> I completed this mission and respected cultural boundaries and permissions.</label></div>
 <div class="card teen-mission" data-mission="2"><span class="pill">MISSION 3</span><h2>Wisdom for Tomorrow</h2><p>Ask someone older what they hope the next generation will remember, protect, or carry forward.</p><div class="goldbox"><b>Try asking:</b><p>“What lesson has life taught you that you hope young people will carry forward?”</p><p>“What are you proud to pass on?”</p></div><label>What wisdom would you like to remember?</label><textarea class="textarea teen-note" id="teenNote2" placeholder="Write your reflection..."></textarea><label class="check"><input type="checkbox" class="teen-check" id="teenCheck2"> I completed this mission and honored what the storyteller chose to share.</label></div>
-<div class="card hidden" id="teenCelebration"><h2>🎉 You’re a Legacy Keeper!</h2><p>You completed all three starter missions. Thank you for listening with care and helping keep meaningful stories alive.</p><p><b>Remember:</b> A story belongs to the person who shares it. Ask before recording, saving, or sharing it.</p></div>
+<div class="card teen-mission" data-mission="3"><span class="pill">MISSION 4</span><h2>Skill Share</h2><p>Invite someone to explain or demonstrate a skill they learned through life, work, family, or community.</p><div class="goldbox"><b>Try asking:</b><p>“Who taught you this skill?”</p><p>“What do beginners often get wrong?”</p><p>“Would you like this skill to be passed on?”</p></div><label>What skill or lesson did you learn?</label><textarea class="textarea teen-note" id="teenNote3" placeholder="Write a reflection. Do not record private details without permission..."></textarea><label class="check"><input type="checkbox" class="teen-check" id="teenCheck3"> I asked permission and respected what the storyteller chose to demonstrate.</label></div>
+<div class="card teen-mission" data-mission="4"><span class="pill">MISSION 5</span><h2>Objects with Stories</h2><p>Ask someone about an object that matters to them, such as a photograph, tool, keepsake, recipe card, or handmade item. They can choose not to show it.</p><div class="goldbox"><b>Try asking:</b><p>“What makes this object meaningful to you?”</p><p>“How did it come into your life?”</p><p>“What would you want someone younger to know about it?”</p></div><label>What meaning or memory did they choose to share?</label><textarea class="textarea teen-note" id="teenNote4" placeholder="Write only what you have permission to keep..."></textarea><label class="check"><input type="checkbox" class="teen-check" id="teenCheck4"> I respected their choice about showing, describing, or keeping this story private.</label></div>
+<div class="card teen-mission" data-mission="5"><span class="pill">MISSION 6</span><h2>Community Helpers</h2><p>Learn about a way someone has helped their family or community. The story may be about volunteering, caring for others, solving a problem, or working together.</p><div class="goldbox"><b>Try asking:</b><p>“What made you want to help?”</p><p>“Who worked alongside you?”</p><p>“What did that experience teach you?”</p></div><label>What did you learn about helping others?</label><textarea class="textarea teen-note" id="teenNote5" placeholder="Write your reflection..."></textarea><label class="check"><input type="checkbox" class="teen-check" id="teenCheck5"> I listened respectfully and received permission for anything I plan to preserve or share.</label></div>
+<div class="card hidden" id="teenCelebration"><h2>🎉 You’re a Legacy Keeper!</h2><p>You completed all six starter missions. Thank you for listening with care and helping keep meaningful stories alive.</p><p><b>Remember:</b> A story belongs to the person who shares it. Ask before recording, saving, or sharing it.</p></div>
 <div class="actions"><button class="outline" onclick="show('teenLegacy')">← Back to Teen Legacy</button><button class="primary" onclick="saveTeenMissions()">SAVE MY PROGRESS</button></div>
 </section>
 <section class="screen" id="teenLeaders">
@@ -48,7 +51,7 @@
 <label class="check"><input type="checkbox" class="leaderPrep" data-item="closing"> I planned time for reflection and a respectful closing.</label>
 <button class="primary" onclick="saveLeaderChecklist()">SAVE PREPARATION CHECKLIST</button>
 </div>
-<div class="card"><h2>Mission Progress Review</h2><p class="sub">This summary reflects progress saved in this browser on this device. It is not a shared roster or remote monitoring system.</p><div class="progress"><span id="leaderProgressBar"></span></div><b id="leaderProgressText">0 of 3 missions marked complete on this device</b><button class="outline" style="display:block;margin-top:14px" onclick="refreshLeaderProgress()">REFRESH PROGRESS</button></div>
+<div class="card"><h2>Mission Progress Review</h2><p class="sub">This summary reflects progress saved in this browser on this device. It is not a shared roster or remote monitoring system.</p><div class="progress"><span id="leaderProgressBar"></span></div><b id="leaderProgressText">0 of 6 missions marked complete on this device</b><button class="outline" style="display:block;margin-top:14px" onclick="refreshLeaderProgress()">REFRESH PROGRESS</button></div>
 <div class="card"><h2>Facilitation Guide</h2><ul><li><b>Ground:</b> Welcome everyone and explain that participation is voluntary.</li><li><b>Guide:</b> Offer open-ended questions; let the storyteller decide what to share.</li><li><b>Witness:</b> Listen without interrupting, correcting, or rushing.</li><li><b>Affirm:</b> Thank people for sharing without judging their experiences.</li><li><b>Archive:</b> Never record, copy, or share a story without clear permission.</li></ul></div>
 <div class="card"><h2>Discussion Starters</h2><p>What can we learn from the people who came before us?</p><p>Which traditions or skills do you hope future generations will remember?</p><p>What helps a person feel safe and respected when sharing a memory?</p></div>
 <div class="card"><h2>Session Notes</h2><label for="leaderNotes">Planning notes (avoid including private details about participants)</label><textarea class="textarea" id="leaderNotes" placeholder="Activity plan, materials, follow-up ideas..."></textarea><button class="primary" onclick="saveLeaderNotes()">SAVE LEADER NOTES</button><p class="small muted">Checklist and notes are saved locally in this browser on this device.</p></div>
@@ -103,7 +106,7 @@ const teenMissionKey='tswl_teen_missions_v1';
 function loadTeenMissions(){
   let saved={};
   try{saved=JSON.parse(localStorage.getItem(teenMissionKey)||'{}')||{}}catch(e){saved={}}
-  for(let i=0;i<3;i++){
+  for(let i=0;i<6;i++){
     const cb=document.getElementById('teenCheck'+i),note=document.getElementById('teenNote'+i);
     if(cb){cb.checked=!!saved[i]?.done;cb.addEventListener('change',updateTeenMissionProgress)}
     if(note){note.value=saved[i]?.note||'';note.addEventListener('input',()=>{saveTeenMissionData(false)})}
@@ -112,20 +115,20 @@ function loadTeenMissions(){
 }
 function saveTeenMissionData(showMessage){
   const saved={};
-  for(let i=0;i<3;i++)saved[i]={done:!!document.getElementById('teenCheck'+i)?.checked,note:document.getElementById('teenNote'+i)?.value||''};
+  for(let i=0;i<6;i++)saved[i]={done:!!document.getElementById('teenCheck'+i)?.checked,note:document.getElementById('teenNote'+i)?.value||''};
   localStorage.setItem(teenMissionKey,JSON.stringify(saved));
   if(showMessage)toast('Teen Legacy progress saved on this device ✓');
   updateTeenMissionProgress();
 }
 function saveTeenMissions(){saveTeenMissionData(true)}
 function updateTeenMissionProgress(){
-  const done=[0,1,2].filter(i=>document.getElementById('teenCheck'+i)?.checked).length;
+  const done=[0,1,2,3,4,5].filter(i=>document.getElementById('teenCheck'+i)?.checked).length;
   const bar=document.getElementById('teenProgressBar'),text=document.getElementById('teenProgressText'),celebration=document.getElementById('teenCelebration');
-  if(bar)bar.style.width=Math.round(done/3*100)+'%';
-  if(text)text.textContent=done+' of 3 missions complete';
-  if(celebration)celebration.classList.toggle('hidden',done!==3);
+  if(bar)bar.style.width=Math.round(done/6*100)+'%';
+  if(text)text.textContent=done+' of 6 missions complete';
+  if(celebration)celebration.classList.toggle('hidden',done!==6);
   const saved={};
-  for(let i=0;i<3;i++)saved[i]={done:!!document.getElementById('teenCheck'+i)?.checked,note:document.getElementById('teenNote'+i)?.value||''};
+  for(let i=0;i<6;i++)saved[i]={done:!!document.getElementById('teenCheck'+i)?.checked,note:document.getElementById('teenNote'+i)?.value||''};
   localStorage.setItem(teenMissionKey,JSON.stringify(saved));
 }
 loadTeenMissions();
@@ -140,6 +143,6 @@ function loadLeaderTools(){
 }
 function saveLeaderChecklist(){const checked=[...document.querySelectorAll('.leaderPrep:checked')].map(cb=>cb.dataset.item);localStorage.setItem(leaderChecklistKey,JSON.stringify(checked));toast('Leader checklist saved on this device ✓')}
 function saveLeaderNotes(){localStorage.setItem(leaderNotesKey,document.getElementById('leaderNotes').value);toast('Leader notes saved on this device ✓')}
-function refreshLeaderProgress(){let saved={};try{saved=JSON.parse(localStorage.getItem(teenMissionKey)||'{}')||{}}catch(e){saved={}}const done=[0,1,2].filter(i=>saved[i]?.done).length;const bar=document.getElementById('leaderProgressBar'),text=document.getElementById('leaderProgressText');if(bar)bar.style.width=Math.round(done/3*100)+'%';if(text)text.textContent=done+' of 3 missions marked complete on this device'}
+function refreshLeaderProgress(){let saved={};try{saved=JSON.parse(localStorage.getItem(teenMissionKey)||'{}')||{}}catch(e){saved={}}const done=[0,1,2,3,4,5].filter(i=>saved[i]?.done).length;const bar=document.getElementById('leaderProgressBar'),text=document.getElementById('leaderProgressText');if(bar)bar.style.width=Math.round(done/6*100)+'%';if(text)text.textContent=done+' of 6 missions marked complete on this device'}
 loadLeaderTools();
 </script>
