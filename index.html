@@ -24,6 +24,7 @@
 <div class="grid">
 <button class="tile" onclick="show('teenMissions')"><div class="icon">🌺</div><b>Teen Legacy Keepers</b><p>Explore missions, interview elders, and preserve meaningful stories.</p></button>
 <button class="tile" onclick="show('teenLeaders')"><div class="icon">🤝</div><b>Program Leaders</b><p>Guide activities, support teens, and organize community storytelling.</p></button>
+<button class="tile" onclick="show('legacyCollection');renderLegacyCollection()"><div class="icon">📚</div><b>My Legacy Collection</b><p>Save stories, traditions, and wisdom with the storyteller’s permission.</p></button>
 </div>
 <div class="card"><h2>Our Mission</h2><p>Connect generations through storytelling, cultural traditions, shared experiences, and the wisdom of our elders.</p></div>
 <div class="card"><h2>Start Here</h2><p>Choose your path above. Together, we keep stories alive for the next generation.</p></div>
@@ -40,6 +41,22 @@
 <div class="card teen-mission" data-mission="5"><span class="pill">MISSION 6</span><h2>Community Helpers</h2><p>Learn about a way someone has helped their family or community. The story may be about volunteering, caring for others, solving a problem, or working together.</p><div class="goldbox"><b>Try asking:</b><p>“What made you want to help?”</p><p>“Who worked alongside you?”</p><p>“What did that experience teach you?”</p></div><label>What did you learn about helping others?</label><textarea class="textarea teen-note" id="teenNote5" placeholder="Write your reflection..."></textarea><label class="check"><input type="checkbox" class="teen-check" id="teenCheck5"> I listened respectfully and received permission for anything I plan to preserve or share.</label></div>
 <div class="card hidden" id="teenCelebration"><h2>🎉 You’re a Legacy Keeper!</h2><p>You completed all six starter missions. Thank you for listening with care and helping keep meaningful stories alive.</p><p><b>Remember:</b> A story belongs to the person who shares it. Ask before recording, saving, or sharing it.</p></div>
 <div class="actions"><button class="outline" onclick="show('teenLegacy')">← Back to Teen Legacy</button><button class="primary" onclick="saveTeenMissions()">SAVE MY PROGRESS</button></div>
+</section>
+<section class="screen" id="legacyCollection">
+<div class="hero"><h1>My Legacy Collection</h1><p class="sub">Preserve the stories you are trusted to hear. The storyteller's wishes come first.</p></div>
+<div class="card"><h2>Before You Save a Story</h2><p>Ask permission before writing, recording, keeping, or sharing a story. Let the storyteller choose what may be saved and who may see it. You can leave any field blank, and you can remove a saved story at any time.</p></div>
+<div class="card"><h2>Add a Story</h2>
+<label for="legacyStoryteller">Storyteller name or nickname (optional)</label><input class="input" id="legacyStoryteller" maxlength="80" placeholder="e.g., Auntie Jo or Storyteller 01">
+<label for="legacyTitle">Story title</label><input class="input" id="legacyTitle" maxlength="120" placeholder="e.g., The day we moved to the island">
+<label for="legacyCategory">Story type</label><select class="input" id="legacyCategory"><option>Childhood memory</option><option>Family tradition</option><option>Culture and community</option><option>Life lesson</option><option>Skill or craft</option><option>Message for the future</option><option>Other</option></select>
+<label for="legacyStory">Story or notes</label><textarea class="textarea" id="legacyStory" maxlength="12000" placeholder="Write only what the storyteller has agreed you may keep..."></textarea>
+<label for="legacyWisdom">What I learned or want to remember</label><textarea class="textarea" id="legacyWisdom" maxlength="3000" placeholder="A lesson, phrase, or reflection..."></textarea>
+<label class="check"><input type="checkbox" id="legacyPermission"> The storyteller gave permission for me to save this story or these notes on this device.</label>
+<div class="actions"><button class="primary" onclick="saveLegacyStory()">SAVE STORY</button><button class="outline" onclick="clearLegacyForm()">CLEAR FORM</button></div>
+<p class="small muted">Stories are stored only in this browser on this device. They are not automatically shared with a program leader or backed up online. Avoid saving sensitive or private information.</p>
+</div>
+<div class="card"><div class="actions" style="justify-content:space-between;align-items:center"><h2>Saved Stories</h2><button class="outline" onclick="exportLegacyStories()">DOWNLOAD MY STORIES</button></div><div id="legacyStoryList"><p class="small muted">No stories saved yet.</p></div></div>
+<div class="actions"><button class="outline" onclick="show('teenLegacy')">← Back to Teen Legacy</button><button class="outline" onclick="show('teenMissions')">← Back to Missions</button></div>
 </section>
 <section class="screen" id="teenLeaders">
 <div class="hero"><h1>Program Leaders</h1><p class="sub">Plan activities, support teen storytellers, and create a respectful bridge between generations.</p></div>
@@ -184,5 +201,23 @@ function getProgressRecords(){try{return JSON.parse(localStorage.getItem(progres
 function addProgressRecord(){const who=document.getElementById('progressParticipant').value.trim();if(!who){alert('Enter a first name, initials, or group code.');return}const record={id:Date.now(),who,mission:document.getElementById('progressMission').value,status:document.getElementById('progressStatus').value,followup:document.getElementById('progressFollowup').value.trim(),date:new Date().toLocaleDateString()};const rows=getProgressRecords();rows.unshift(record);localStorage.setItem(progressRecordsKey,JSON.stringify(rows));document.getElementById('progressParticipant').value='';document.getElementById('progressFollowup').value='';renderProgressRecords();toast('Progress record saved on this device ✓')}
 function renderProgressRecords(){const box=document.getElementById('progressRecords');if(!box)return;const rows=getProgressRecords();box.innerHTML='';if(!rows.length){box.innerHTML='<p class="small muted">No progress records added yet.</p>';return}rows.forEach(r=>{const d=document.createElement('div');d.className='card';d.innerHTML='<b></b><p class="small muted"></p><p></p><button class="outline">Remove</button>';d.querySelector('b').textContent=r.who+' · '+r.mission;d.querySelectorAll('p')[0].textContent=r.date+' · '+r.status;d.querySelectorAll('p')[1].textContent=r.followup||'No follow-up note';d.querySelector('button').onclick=()=>{if(confirm('Remove this progress record?')){localStorage.setItem(progressRecordsKey,JSON.stringify(getProgressRecords().filter(x=>x.id!==r.id)));renderProgressRecords()}};box.appendChild(d)})}
 function exportProgressRecords(){const rows=getProgressRecords();if(!rows.length){alert('There are no progress records to download yet.');return}const lines=[['Date','Teen/group label','Mission','Status','Follow-up'],...rows.map(r=>[r.date,r.who,r.mission,r.status,r.followup])];const csv=lines.map(row=>row.map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='TSWL_Teen_Legacy_Progress_Log.csv';a.click();URL.revokeObjectURL(url)}
+const legacyStoriesKey='tswl_teen_legacy_collection_v1';
+function getLegacyStories(){try{return JSON.parse(localStorage.getItem(legacyStoriesKey)||'[]')||[]}catch(e){return []}}
+function saveLegacyStory(){
+ const title=document.getElementById('legacyTitle').value.trim();
+ const story=document.getElementById('legacyStory').value.trim();
+ const permission=document.getElementById('legacyPermission').checked;
+ if(!title){alert('Please add a title for this story.');return}
+ if(!story){alert('Please add the story or notes you have permission to keep.');return}
+ if(!permission){alert('Please confirm that the storyteller gave permission before saving.');return}
+ const rows=getLegacyStories();
+ rows.unshift({id:Date.now(),storyteller:document.getElementById('legacyStoryteller').value.trim(),title,category:document.getElementById('legacyCategory').value,story,wisdom:document.getElementById('legacyWisdom').value.trim(),date:new Date().toLocaleDateString()});
+ try{localStorage.setItem(legacyStoriesKey,JSON.stringify(rows))}catch(e){alert('This device could not save the story. It may be out of browser storage space. Please copy your writing somewhere safe before trying again.');return}
+ clearLegacyForm();renderLegacyCollection();toast('Story saved on this device ✓');
+}
+function clearLegacyForm(){['legacyStoryteller','legacyTitle','legacyStory','legacyWisdom'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});const c=document.getElementById('legacyPermission');if(c)c.checked=false;const cat=document.getElementById('legacyCategory');if(cat)cat.selectedIndex=0}
+function renderLegacyCollection(){const box=document.getElementById('legacyStoryList');if(!box)return;const rows=getLegacyStories();box.innerHTML='';if(!rows.length){box.innerHTML='<p class="small muted">No stories saved yet.</p>';return}rows.forEach(r=>{const d=document.createElement('div');d.className='card';const h=document.createElement('h3');h.textContent=r.title;const meta=document.createElement('p');meta.className='small muted';meta.textContent=[r.date,r.category,r.storyteller].filter(Boolean).join(' · ');const body=document.createElement('p');body.style.whiteSpace='pre-wrap';body.textContent=r.story;d.append(h,meta,body);if(r.wisdom){const w=document.createElement('p');w.style.whiteSpace='pre-wrap';w.textContent='What I learned: '+r.wisdom;d.appendChild(w)}const b=document.createElement('button');b.className='outline';b.textContent='DELETE STORY';b.onclick=()=>{if(confirm('Delete this saved story from this device? This cannot be undone.')){localStorage.setItem(legacyStoriesKey,JSON.stringify(getLegacyStories().filter(x=>x.id!==r.id)));renderLegacyCollection();toast('Story deleted')}};d.appendChild(b);box.appendChild(d)})}
+function exportLegacyStories(){const rows=getLegacyStories();if(!rows.length){alert('There are no saved stories to download yet.');return}const headers=['Date','Storyteller','Title','Category','Story','What I learned'];const all=[headers,...rows.map(r=>[r.date,r.storyteller,r.title,r.category,r.story,r.wisdom])];const csv=all.map(row=>row.map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='TSWL_My_Legacy_Collection.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+
 loadLeaderTools();loadSessionPlan();renderProgressRecords();
 </script>
